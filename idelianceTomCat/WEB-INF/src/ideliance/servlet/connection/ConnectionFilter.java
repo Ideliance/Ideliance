@@ -105,7 +105,7 @@ public class ConnectionFilter implements Filter {
 			
 			// TODO Add lang parameter
 			session.setAttribute("lang", "en");
-			session.setAttribute("root", "/");
+			session.setAttribute("root", "/Ideliance");
 			
 			chain.doFilter(request, response);
 		}
