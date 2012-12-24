@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://ideliance.fr/tag-lib</taglib-uri>
+			<taglib-location>/WEB-INF/tld/taglib.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.index.IndexServlet</servlet-class>
+		<servlet-name>index</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.search.SearchServlet</servlet-class>
+		<servlet-name>search</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.subject.SubjectListServlet</servlet-class>
+		<servlet-name>listSubject</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.subject.SubjectViewServlet</servlet-class>
+		<servlet-name>viewSubject</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.subject.SubjectAddServlet</servlet-class>
+		<servlet-name>addSubject</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.subject.SubjectDeleteServlet</servlet-class>
+		<servlet-name>deleteSubject</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.subject.SubjectAddTripletServlet</servlet-class>
+		<servlet-name>addTripletSubject</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.relation.RelationListServlet</servlet-class>
+		<servlet-name>listRelation</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.relation.RelationViewServlet</servlet-class>
+		<servlet-name>viewRelation</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.relation.RelationAddServlet</servlet-class>
+		<servlet-name>addRelation</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.relation.RelationDeleteServlet</servlet-class>
+		<servlet-name>deleteRelation</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.triplet.TripletListServlet</servlet-class>
+		<servlet-name>listTriplet</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.triplet.TripletAddServlet</servlet-class>
+		<servlet-name>addTriplet</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.triplet.TripletDeleteServlet</servlet-class>
+		<servlet-name>deleteTriplet</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.category.CategoryAddServlet</servlet-class>
+		<servlet-name>addCategory</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.category.CategoryViewServlet</servlet-class>
+		<servlet-name>viewCategory</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.category.CategoryDeleteServlet</servlet-class>
+		<servlet-name>deleteCategory</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.category.CategoryMergeServlet</servlet-class>
+		<servlet-name>mergeCategory</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.connection.ConnectionServlet</servlet-class>
+		<servlet-name>connection</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.connection.DisconnectionServlet</servlet-class>
+		<servlet-name>disconnection</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.administration.IndexServlet</servlet-class>
+		<servlet-name>adminIndex</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.user.UserListServlet</servlet-class>
+		<servlet-name>userList</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.user.UserAddServlet</servlet-class>
+		<servlet-name>userAdd</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.user.UserDeleteServlet</servlet-class>
+		<servlet-name>userDelete</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.administration.ImportServlet</servlet-class>
+		<servlet-name>import</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.quoiEntre.QuoiEntreCreateServlet</servlet-class>
+		<servlet-name>createQuoiEntre</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.quoiEntre.QuoiEntrePreDisplayServlet</servlet-class>
+		<servlet-name>preDisplayQuoiEntre</servlet-name>
+	</servlet>
+	
+	<servlet>
+		<servlet-class>ideliance.servlet.quoiEntre.QuoiEntreDisplayServlet</servlet-class>
+		<servlet-name>displayQuoiEntre</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>ideliance.servlet.ajax.GetSubjectsNextToServlet</servlet-class>
+		<servlet-name>GetSubjectsNextTo</servlet-name>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index.html</url-pattern>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>listSubject</servlet-name>
+		<url-pattern>/subject/list</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>viewSubject</servlet-name>
+		<url-pattern>/subject/view</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addSubject</servlet-name>
+		<url-pattern>/subject/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addSubject</servlet-name>
+		<url-pattern>/subject/modify</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>deleteSubject</servlet-name>
+		<url-pattern>/subject/delete</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addTripletSubject</servlet-name>
+		<url-pattern>/subject/add-triplet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>listRelation</servlet-name>
+		<url-pattern>/relation</url-pattern>
+		<url-pattern>/relation/list</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>viewRelation</servlet-name>
+		<url-pattern>/relation/view</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addRelation</servlet-name>
+		<url-pattern>/relation/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addRelation</servlet-name>
+		<url-pattern>/relation/modify</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>deleteRelation</servlet-name>
+		<url-pattern>/relation/delete</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>listTriplet</servlet-name>
+		<url-pattern>/triplet/list</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addTriplet</servlet-name>
+		<url-pattern>/triplet/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addTriplet</servlet-name>
+		<url-pattern>/triplet/modify</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>deleteTriplet</servlet-name>
+		<url-pattern>/triplet/delete</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addCategory</servlet-name>
+		<url-pattern>/category/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addCategory</servlet-name>
+		<url-pattern>/category/modify</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>viewCategory</servlet-name>
+		<url-pattern>/category/view</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>deleteCategory</servlet-name>
+		<url-pattern>/category/delete</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>mergeCategory</servlet-name>
+		<url-pattern>/category/merge</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>connection</servlet-name>
+		<url-pattern>/connection</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>disconnection</servlet-name>
+		<url-pattern>/disconnection</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>adminIndex</servlet-name>
+		<url-pattern>/administration/</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>userList</servlet-name>
+		<url-pattern>/administration/user/</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>userAdd</servlet-name>
+		<url-pattern>/administration/user/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>userAdd</servlet-name>
+		<url-pattern>/administration/user/modify</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>userDelete</servlet-name>
+		<url-pattern>/administration/user/delete</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>import</servlet-name>
+		<url-pattern>/administration/import</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>createQuoiEntre</servlet-name>
+		<url-pattern>/quoiEntre/create</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>preDisplayQuoiEntre</servlet-name>
+		<url-pattern>/quoiEntre/preDisplay</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>displayQuoiEntre</servlet-name>
+		<url-pattern>/quoiEntre/display</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>displayQuoiEntre</servlet-name>
+		<url-pattern>/subject/display</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GetSubjectsNextTo</servlet-name>
+		<url-pattern>/ajax/getSubjectsNextTo</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+		<init-param>
+			<param-name>debug.pagewriter</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>connectionFilter</filter-name>
+		<filter-class>ideliance.servlet.connection.ConnectionFilter</filter-class>
+		<init-param>
+			<param-name>excludePatterns</param-name>
+			<param-value>\/public\/.*|\/favicon.ico|\/ajax\/.*</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>administrationFilter</filter-name>
+		<filter-class>ideliance.servlet.administration.AdministrationFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>connectionFilter</filter-name>
+		<servlet-name>*</servlet-name>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>administrationFilter</filter-name>
+		<url-pattern>/administration/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+</web-app>
