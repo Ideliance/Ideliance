@@ -1,0 +1,58 @@
+<h1>Ins&eacute;rer une relation</h1>
+<br/>
+
+<form id="insertForm" action="#">
+	<h3> Relation principale :</h3>
+	 <table>
+		<tr>
+			<td><label for="sujet"> Sujet </label></td>
+			<td><label for="relation"> Verbe </label></td>
+			<td><label for="complement"> Compl&eacute;ment </label></td>
+			<td><img src="images/help.png" rel="tooltip" data-original-title="Saisissez une relation et indiquez le verbe de la relation inverse ou bien laissez celui par d&eacute;faut"  /></td>
+		</tr>
+		<tr>
+			<td><INPUT type="text" id="sujet" autocomplete="off" onkeyup="updateCompInv()" onchange="updateCompInv()" autofocus> </td>
+			<td><INPUT type="text" id="relation" autocomplete="off" onkeyup="updateVerbInv()"></td>
+			<td><INPUT type="text" id="complement" autocomplete="off" onkeyup="updateSujetInv()" onchange="updateSujetInv()" ></td>
+	 
+			<td><button type="submit" class="btn btn-primary">Ajouter</button></td>
+		</tr>
+	</table>
+
+	<br/>
+
+	<h3> Relation inverse :</h3>
+	<table>
+		<tr>
+			<td><label> Sujet </label></td>
+			<td><label for="relationInv"> Verbe </label></td>
+			<td><label> Compl&eacute;ment </label></td>
+		</tr>
+		<tr>
+			<td><INPUT type="text" disabled id="sujetInv"> </td>
+			<td><INPUT type="text" id="relationInv" autocomplete="off"></td>
+			<td><INPUT type="text" disabled id="complementInv"></td>
+		</tr>
+	</table>
+
+</form>
+
+ <script type="text/javascript">			
+	$(function() {
+		
+		autocomplete("sujet", "complement", 'select name from v where name.toLowerCase()');
+		autocomplete("relation", "relationInv", 'select distinct(label) as name from e where label.toLowerCase()');
+		
+		//TODO : autocompletion intelligente lorsque seul un sujet a ete renseigne : on suggere des relations probables
+		
+		initTooltips();
+	
+	});
+	
+	$('#insertForm').submit(
+			function() {
+				addRelation();
+				return false;
+	});
+
+ </script>

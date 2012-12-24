@@ -1,0 +1,28 @@
+<h1 align= "center">Bienvenue sur Ideliance</h1>
+<br/>
+<p style="text-indent:2em" align = "center">
+Ideliance est un logiciel de gestion de connaissances. Toute information se traduit par une relation Sujet - Verbe - Complement. Ex: [Martin][habite &agrave;] [Paris].
+</p>
+
+<p align = "center"> 
+Au travers des diff&eacute;rents panels pr&eacute;sents, vous pouvez ins&eacute;rer des relations, les modifier, les fusionner, rechercher les liens entre deux entit&eacute;s, etc.
+</p>
+
+<div class = "row-fluid"> 
+	<div style= "float:left">
+		<div id = "cloudRelations" style= "border-style:groove"></div>
+		<label align ="center"><strong>Verbes les plus fr&eacute;quents</strong></label>
+	</div>
+	<div style = "float:right">
+		<div id = "cloudEntities" style= "border-style:groove"></div>
+		<label align="center"><strong>Entit&eacute;s les plus fr&eacute;quentes</strong></label>
+	</div>
+</div>
+
+
+<script>
+	$(function(){
+		constructCloud('relations');
+		constructCloud('entities');
+	});
+</script>

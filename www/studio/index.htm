@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ideliance - Outil de gestion de connaissances</title>
+<meta name="title" content="Relations | Entities | Ideliance | Ideas " />
+<meta name="description" content="Ideliance" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link type="image/png" href="/favicon.ico" rel="icon">
+<link rel="stylesheet" type="text/css" media="screen" href="styles/custom/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="styles/custom/jquery.fileupload-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="styles/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="styles/studio.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/prettify.css">
+
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="../js/jquery.tools.min.js" type="text/javascript"></script>
+<script src="../js/jquery.json-2.2.min.js" type="text/javascript"></script>
+<script src="../js/jquery.fileupload.js" type="text/javascript"></script>
+<script src="../js/jquery.fileupload-ui.js" type="text/javascript"></script>
+<script src="../js/orientdb-form.js" type="text/javascript"></script>
+<script src="../js/orientdb-api.js" type="text/javascript"></script>
+<script src="../js/orientdb-app.js" type="text/javascript"></script>
+<script src="../js/orientdb-controller.js" type="text/javascript"></script>
+
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/orientdb-studio.js" type="text/javascript"></script>
+<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script src="js/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="js/d3/d3.js" type="text/javascript"></script>
+<script src="js/cloud/d3.layout.cloud.js" type="text/javascript"></script>
+<script src="js/autoresize.jquery.min.js" type="text/javascript"></script>
+<script src="js/codemirror/codemirror.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
+<script src="js/orientdb-graph.js"></script>
+
+<script src="js/ideliance/database_functions.js" type="text/javascript"></script> <!-- Contient le code pour creer le schema de la base, et les index -->
+<script src="js/ideliance/utils.js" type="text/javascript"></script> <!-- Contient principalement des fonctions utilitaires -->
+<script src="js/ideliance/edit_functions.js" type="text/javascript"></script> <!-- Contient le code pour la page de manipulation des entites et relations -->
+<script src="js/ideliance/insert_functions.js" type="text/javascript"></script> <!-- Contient le code pour la page d'insertion des relations -->
+<script src="js/ideliance/QE_functions.js" type="text/javascript"></script> <!-- Contient le code pour la page de Quoi-Entre -->
+<script src="js/ideliance/home_functions.js" type="text/javascript"></script> <!-- Contient le code pour creer les word clouds -->
+
+</head>
+<body>
+	<div class="container">
+		<div class="row-fluid">
+			<div id="mainPanel" class="span12"></div>
+		</div>
+		<div class="row-fluid">
+			<form class="form-inline">
+				<label>Console : </label> <a id="clearOutput" href="#" rel="tooltip" onclick="javascript:clearOutput()" data-placement="right"
+					data-original-title="Effacer la console"> <i class="icon-remove"></i>
+				</a>
+				<textarea style="width: 100%;" id="output" rows="3" title="value" readonly="readonly" >WARN: Javascript semble d&eacute;sactiv&eacute; !</textarea>
+			</form>
+		</div>
+		<div class="row-fluid">
+			<div class="span12" align="center">
+				Ideliance - 2012
+			</div>
+		</div>
+	</div>
+</body>
+
+
+<script type="text/javascript">
+	var startTime = 0; // CONTAINS THE LAST EXECUTION TIME
+	var databaseInfo; // CONTAINS THE DB INFO
+	var classEnumeration; // CONTAINS THE DB CLASSES
+	var selectedClassName; // CONTAINS LATEST SELECTED CLASS NAME
+	var orientServer;
+	var selectedObject;
+
+	var controller = new OController({
+		component : "panel",
+		cachePages : false
+	});
+
+	function disconnect() {
+		if (orientServer == null) {
+			orientServer = new ODatabase;
+			orientServer.setDatabaseUrl($('#server').val());
+			orientServer.setDatabaseName($('#database').val());
+			orientServer.close();
+		} else {
+			orientServer.close();
+			orientServer = null;
+		}
+		$("#buttonDisconnect").hide();
+		$("#buttonConnect").show();
+
+		controller.loadFragment('panelHome.htm', null, null, 'mainPanel');
+	}
+
+	function displayDocument(selObject, database) {
+		selectedObject = selObject;
+		controller.loadFragment("panelDocument.htm");
+	}
+
+	function displayGraph(selObject) {
+		selectedObject = selObject;
+		controller.loadFragment("panelGraph.htm");
+	}
+
+	function clearOutput() {
+		$("#output").val("");
+	}
+</script>
+<script>
+	$(function() {
+		initTooltips();
+		clearOutput();
+	});
+</script>
+</html>

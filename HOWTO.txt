@@ -1,0 +1,158 @@
+Ideliance - Outil de gestion de connaissances
+=============================================
+
+
+Guide d'utilisation 
+--------------------
+
+Avant de lire la suite, assurez-vous d'avoir correctement lancé le projet (cf. README.txt).
+Une fois fait, rendez-vous à l'URL où le projet est déployé.
+
+1 Connexion
+
+Dans le panel de connexion, sélectionnez une base dans la liste des bases existantes.
+Pour créer une nouvelle base, rendez-vous à la section 7.1 Création de base.
+
+Connectez-vous ensuite avec un compte valide.
+Contactez l'administrateur de la base si vous ne disposez pas d'identifiants.
+
+NB : toute base qui vient d'être nouvellement créée contient par défaut les comptes suivants :
+	- admin/admin : a tout les droits sur la base et peut gérer les droits des utilisateurs, a des vues en plus, etc.
+	- writer/writer : peut faire des opérations en écriture, lecture, suppression.
+	- reader/reader : ne peut faire que des opérations en lecture.
+
+
+2 Insérer une relation
+
+Pour ajouter une relation, rendez-vous dans le panel "Insert relation" dans le menu en haut de page.
+
+Renseignez ensuite le sujet, le verbe et le complément de la relation à ajouter. 
+Vous pouvez, si vous le souhaitez, spécifier le verbe de la relation inverse ou laisser celui par défaut (pour le changer plus tard).
+Une complétion semi-automatique est présente. Les cas où des entrées sont nulles, où la relation existe déjà sont gérés.
+
+
+3 Modifier une relation
+
+Pour mettre à jour les relations, rendez-vous dans le panel "Edit relations" dans le menu.
+
+Un tableau permet de visualiser les relations. Des filtres de recherche sont disponibles pour chaque champ.
+
+Il vous est notamment possible de :
+- supprimer l'ensemble des relations sélectionnées
+- renommer le verbe de la première relation sélectionnée
+- fusionner plusieurs verbes qui ont le même sens (ex : "aime" et "apprécie")
+
+
+4 Modifier une entité
+
+Pour mettre à jour les entités, rendez-vous dans le panel "Edit entities".
+
+Un tableau permet de visualiser les entités. Un filtre de recherche est aussi disponible.
+
+Vous pouvez :
+- supprimer l'ensemble des entités sélectionnées
+- renommer une entité
+- fusionner des entités identiques (ex: Jean-Pierre avec jean-pierre et jean pierre).
+
+
+5 Quoi-Entre
+
+Les relations peuvent être exploitées avec la fonction Quoi-Entre (recherche de liens entre deux entités).
+Pour cela, allez dans le panel associé.
+
+Saisissez deux sujets, saisissez une profondeur limite et éventuellement les verbes à exclure.
+
+Ex: Dans une base de données sur les animaux
+-Quoi-Entre "chat", "souris" avec une profondeur limite de 2 renvoie
+      [chat] [chasse] [souris]
+
+-Quoi-Entre "chat", "souris" avec une profondeur limite de 3 renvoie
+      [chat] [chasse] [souris]
+      [chat] [est de type] [mammifère] [généralise] [souris]
+
+-Quoi-Entre "chat", "souris" avec une profondeur limite de 3 et en excluant "chasse" renvoie
+      [chat] [est de type] [mammifère] [généralise] [souris]
+      
+ 
+6 Outils administrateurs
+      
+      Si vous avez les droits d'administrations, vous disposez de vues supplémentaires.
+      
+      6.1 Visualisation de la base
+      
+Dans le panel "Database", vous pouvez visualiser les différentes classes dans la base de données, 
+ainsi que leurs propriétés et les indexes ajoutés.
+De plus, les configurations du serveur sont affichés. Il vous est aussi possible d'importer des données
+au format JSON, ou CSV (en respectant la syntaxe acceptée par OrientDB).
+
+NB: Il s'agit du panel "Database" présent par défaut dans OrientDB Studio (cf. README.txt).
+
+      6.2 Exécuter des requêtes
+      
+Le panel "Query" permet d'exécuter des requêtes SQL en temps réel sur la base OrientDB (la syntaxe exacte est disponible sur le wiki d'OrientDB).
+Cette fonction est indispensable, notamment pour la gestion des droits utilisateurs (consulter la section 8 Gestion des utilisateurs).
+
+NB: Il s'agit du panel "Query" présent par défaut dans OrientDB Studio (cf. README.txt).
+
+      6.3 Fonctions
+      
+Le panel Fonction permet d'écrire des fonctions (équivalent des procédures stockées) en Javascript. Il n'est pas utilisé pour l'instant, et n'est pas encore
+totalement fonctionnel.
+
+NB: Il s'agit du panel "Functions" présent par défaut dans OrientDB Studio (cf. README.txt).      
+      
+      6.4 Graphe
+      
+Le panel "Graph" offre une vue en graphe des données. Il n'est pas encore totalement adapté à la visualisation des relations.
+
+NB: Il s'agit du panel "Graph" présent par défaut dans OrientDB Studio (cf. README.txt).  
+
+
+7 Administration serveur
+
+Pour utiliser les fonctions suivantes, retournez à l'écran de connexion.
+NB : les identifiants d'administrateur du serveur demandés se trouvent dans le fichier de configuration Ideliance/config/orientdb-server-config.xml 
+dans la section "users". N'oubliez-pas de modifier les identifiants par défaut.
+
+      7.1 Création de base
+
+Pour créer une base, cliquer sur "Nouvelle base".
+Dans le nouveau panel, renseignez le nom de la base, puis cliquez sur "Créer base".
+
+Une pop-up s'affichera, vous demandant vos identifiants d'administrateur du serveur.
+
+      7.2 Connexion en tant qu'administrateur du serveur
+	
+Vous pouvez aussi vous connecter en tant qu'administrateur du serveur et accéder au panel de gestion du serveur.
+Il offre des vues permettant de surveiller la liste des utilisateurs connectés, les bases présentes sur le serveur, etc.
+
+Pour l'utiliser, cliquer sur le bouton "Server Administration". Une pop-up s'affichera et vous
+demandera vos identifiants d'administrateur.
+
+
+8 Gestion des utilisateurs
+
+Pour modifier les comptes utilisateurs, vous devez vous connecter en administrateur et aller dans le panel Query.
+
+Les requêtes suivantes permettent de comprendre la manière de gérer les comptes utilisateurs :
+
+- Liste de tous les utilisateurs : 
+      select from ouser
+
+- Ajout d'un utilisateur (ne pas oublier le statut actif)
+      insert into ouser set name = 'jay', password = 'JaY', status = 'ACTIVE', roles = [#4:0]   (*)
+      
+   (*)[#4:0] correspond à un compte administrateur
+      [#4:1] correspond à un compte en lecture
+      [#4:2] correspond à un compte en écriture
+  
+-  Modifier le nom d'un utilisateur
+      update ouser set name = 'jay' where name = 'jayne'
+
+- Modifier le mot de passe d'un utilisateur (le mdp est crypté lors de la sauvegarde)  
+      update ouser set password = 'hello' where name = 'reader'
+      
+- Désactiver un compte 
+      update ouser set status= 'SUSPENDED' where name = 'toto'
+      
+Pour plus d'informations, consulter la partie Security de la documentation d'OrientDB (cf. README.txt).

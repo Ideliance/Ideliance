@@ -1,0 +1,38 @@
+Ideliance - Outil de gestion de connaissances
+=============================================
+
+Voici la liste des choses à faire (sans ordre de priorité)
+
+- Fonction Similitudes :
+On veut pouvoir, étant donnée une entité, obtenir toutes les entités qui ressemblent à celle-ci.
+Concrètement, les entités retournés doivent avoir des relations identiques (même verbe, même complément).
+
+- Recherche automatique du verbe de la relation inverse :
+Lors de la saisie d'une relation Sujet-Verbe-Complément, on recherche dans la base si ce verbe existe et on propose des verbes pour la relation inverse.
+
+- Visualisation graphe :
+On souhaite pouvoir visualiser les relations sous forme de graphe (en affichant les relations et en indiquant le sujet, le verbe et le complément).
+La librairie en graphe sera sans doute à modifier.
+
+- Auto-Complétion intelligente :
+Après avoir saisi le sujet de la relation à insérer, et en passant au champ verbe (qui est vide pour l'instant), une autocomplétion se lance donnant des relations que
+l'on pourrait vouloir insérer (les suggestions se font d'après les entités similaires au sujet saisi, cf. fonction similitudes).
+
+- Améliorer l'import de données (json, csv, xml, rdf, base de donnés tiers, web/text crawling, etc.) :
+Il doit être possible d'importer des relations aux formats spécifiés.
+
+- Notifications :
+Une notification vers l'extérieur doit pouvoir être configurée lorsqu'un événement précis survient (ex : dès que quoi_entre(A,B) contient X alors notification)
+
+- Transactions :
+Pour l'instant, il n'est pas possible de faire des transactions en utilisant l'API JS (et donc l'API REST). Attendre qu'OrientDB supporte cette fonctionnalité pour le faire.
+
+- Mettre en place des fonctions :
+Il serait judicieux de placer le code JS de l'application côté serveur, dans des fonctions (équivalent procédure stockés) OrientDB.
+Ceci permettrait :
+1) d'améliorer les performances des requêtes (si plusieurs requêtes ont lieu côté serveur, on économise des communications serveur-client)
+2) d'améliorer la sécurité (les requêtes ne seront plus en clair dans le code client, il y aura simplement des appels à des fonctions serveurs)
+3) La taille des scripts côté client diminuera (les chargements seront plus rapides).
+
+- Fournir des APIs (?) :
+Il serait peut être utile d'avoir (ou d'extraire) des APIs permettant les insertions de relations, les fusions, les quoi-entre, etc.

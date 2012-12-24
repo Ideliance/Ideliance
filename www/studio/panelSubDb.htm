@@ -1,0 +1,50 @@
+<div class="row-fluid" id="sub-db">
+	<div class="span12" id="header">
+		<div class="row-fluid" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+			<div class="span2">
+				<a href="."><img border="0" src="images/ideliance-logo.png" /></a>
+			</div>
+			<div class="span3 form-inline">
+				<input type="hidden" id="header-server" /> 
+				<label>Utilisateur :</label> 
+				<input id="currentUser" value="" readonly />
+				<label>Base actuelle :</label> 
+				<input id="header-database" value="" readonly />
+			</div>
+			<div class="span7" align="right">
+				<div id="navigation-bar" class="btn-group" align="right">
+					<button class="btn" onclick="javascript:controller.loadFragment('panelHomeIdeliance.htm')">
+						<img src='images/menu-home.png' /><br>Home
+					</button>
+					<button class="btn" onclick="javascript:controller.loadFragment('panelInsertRelation.htm')">
+						<img src='images/menu-raw.png' /><br>Insert relation
+					</button>
+					<button class="btn" onclick="javascript:controller.loadFragment('panelRelations.htm')">
+						<img src='images/menu-query.png' /><br>Edit relations
+					</button>
+					<button class="btn" onclick="javascript:controller.loadFragment('panelEntities.htm')">
+						<img src='images/menu-query.png' /><br>Edit entities
+					</button>
+                    <button class="btn" onclick="javascript:controller.loadFragment('panelQuoiEntre.htm')">
+						<img src='images/QE.png' /><br>Quoi-Entre
+					</button>
+					<button class="btn" onclick="javascript:disconnect()">
+						<img src='images/disconnect.png' /><br>Disconnect
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span12" id="panel"></div>
+</div>
+
+<script>
+	createSchemaIfNotExisting();
+	createIndexesIfNotExisting();
+	checkIfAdmin();
+	
+	$('#header-database').val(orientServer.getDatabaseName());
+	$('#currentUser').val(orientServer.getUserName());
+	controller.loadFragment('panelHomeIdeliance.htm');
+	
+</script>

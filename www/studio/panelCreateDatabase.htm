@@ -1,0 +1,127 @@
+<table width="100%" cellspacing="10">
+	<tr>
+		<td valign="top" width="60%">
+			<form id="createForm" action="#">
+				<table width="100%" cellpadding="4" cellspacing="3">
+					<tr>
+						<td colspan="3" align="left" valign="bottom"><img border="0" src="images/ideliance-logo.png" /><b> Ideliance</b></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="left"><br>
+							<h2>Cr&eacute;er une nouvelle base</h2>
+							<p>
+								Pour cr&eacute;er une nouvelle base, vous devez vous assurer d'avoir les droits acc&egrave;s au serveur et d'avoir les privil&egrave;ges de
+								cr&eacute;ation de base.
+							</p>
+							<p>
+								Entrez les informations de cr&eacute;ation de la base, puis validez. Vos identifiants vous seront demand&eacute;s, contactez votre administrateur
+								si vous ne les avez pas, ou s'ils sont erron&eacute;s.
+							</p>
+							<p>Toute nouvelle base a par d&eacute;faut trois utilisateurs :
+							<ul>
+								<li><b>"reader"</b>, avec comme mot de passe password "reader", peut lire des donn&eacute;es standards dans la base</li>
+								<li><b>"writer"</b>, avec comme mot de passe "writer", peut cr&eacute;er, lire, modifier et supprimer des donn&eacute;s standards</li>
+								<li><b>"admin"</b>, avec comme mot de passe "admin", a tout les droits sur la base</li>
+							</ul>. N'oubliez pas de changer le(s) mot(s) de passe par d&eacute;faut une fois que la base est cr&eacute;e. 
+							</p></td>
+					</tr>
+					<!--tr>
+						<td align="right">Adresse du serveur:</td-->
+						<!--td--><input id="server" size="50" value="" type="hidden"/><!--/td-->
+					<!--/tr-->
+					<tr>
+						<td align="right">Nom de la base :</td>
+						<td><table>
+								<tr>
+									<td id="databaseCell"><input id="database" size="50" value="" /></td>
+								</tr>
+							</table></td>
+					</tr>
+					<!--tr>
+						<td align="right">Type:</td>
+						<td><select id="databaseType">
+								<option value="document">document</option>
+								<option value="graph">graph</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td align="right">Storage Type:</td>
+						<td><select id="storageType">
+								<option value="local">local</option>
+								<option value="memory">memory</option>
+						</select></td>
+					</tr-->
+					<tr>
+						<td align="center" colspan="2">
+							<button type="submit" id="buttonConnect" class="btn btn-primary">
+								Cr&eacute;er base <img border="0" alt="Cr&eacute;er" src="images/connect.png" align="top" />
+							</button>
+							<button id="buttonCancel" class="btn">
+								Retour <img border="0" alt="Reour" src="images/back.png" align="top" />
+							</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+	$('#createForm').submit(
+			function() {
+				if (orientServer == null) {
+					orientServer = new ODatabase($('#server').val() + '/'
+							+ $('#database').val());
+				}
+				databaseInfo = orientServer.create(null, null,
+						"local", "graph");
+				if (databaseInfo == null) {
+					jQuery("#output").text(orientServer.getErrorMessage());
+				} else {
+					controller.loadFragment("panelDatabase.htm", null, null,
+							'panel');
+
+					$("#navigation").show().ready(function() {
+						if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
+							$('#navigation').addClass('navigation-ie');
+						else
+							$('#navigation').addClass('navigation');
+
+						var d = 1000;
+						$('#navigation a').each(function() {
+							$(this).stop().animate({
+								'marginTop' : '-80px'
+							}, d += 300);
+						});
+
+						$('#navigation > li').hover(function() {
+							$('a', $(this)).stop().animate({
+								'marginTop' : '-2px'
+							}, 100);
+						}, function() {
+							$('a', $(this)).stop().animate({
+								'marginTop' : '-80px'
+							}, 100);
+						});
+					});
+
+					$('#header-server').val($('#server').val());
+					$('#header-database').val($('#database').val());
+					$('#database').val("");
+					$('#header').show();
+					$("#buttonConnect").hide();
+					$("#buttonDisconnect").show();
+				}
+				return false;
+			});
+
+	$('#buttonCancel').click(function() {
+		controller.loadFragment("panelHome.htm", null, null, 'mainPanel');
+		return false;
+	});
+
+	$('#server').change(formatServerURL);
+	$('#server').val(document.location.href);
+	formatServerURL();
+</script>

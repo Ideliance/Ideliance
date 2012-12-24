@@ -1,0 +1,52 @@
+<div class="row-fluid">
+
+	<h1>Edit a relation
+	<div class="span2">
+		<button onclick="loadData('relations')" class="btn btn-primary btn-large" id="queryExecute"
+				rel="tooltip" data-placement="bottom" data-original-title="Refresh the view">
+			Refresh <img border="0" alt="Execute" src="images/execute.png" align="top" />
+		</button>
+	</div>
+	<img src="images/help.png" align= "right" rel="tooltip" data-original-title="Utilisez les champs de recherche pour trouver une relation. Vous pouvez supprimer, renommer, ou en fusionner plusieurs. Cliquez sur Refresh pour avoir une vue &agrave; jour."  />
+	</h1>
+	
+	<div id="tabs-results" class="span12">
+		<ul>
+			<li><a href="#tab-table"> </a></li>
+		</ul> 
+		<div id="tab-table" class="row">
+			<div class="offset9 span3 btn-group">
+				<button id="deleteRelation" class="btn" style="width: 90px; text-align: center" onclick="deleteRelations()"
+						rel="tooltip" data-placement="bottom" data-original-title="Deletes the selected relations">
+					Delete <img border="0" alt="Delete relations" src="images/delete.png" align="top" />						</button>
+				<button id="renameRelation" class="btn" style="width: 90px; text-align: center" onclick="renameProcess('verb')"
+						rel="tooltip" data-placement="bottom" data-original-title="Renames the first selected relation">
+					Rename <img border="0" alt="Rename relation" src="images/set.png" align="top" />
+				</button>
+				<button id="mergeRelations" class="btn" style="width: 90px; text-align: center" onclick="mergeRelations()"
+						rel="tooltip" data-placement="bottom" data-original-title="Merge the selected relations">
+					Merge <img border="0" alt="Merge the selected relations" src="images/merge.png" align="top" />
+				</button>
+			</div>
+			<div class="span12">
+				<table id="queryResultTable">
+				</table>
+				<div id="queryResultTableNav"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var commandResponse;
+	var selArr=[];
+		
+	$('#tabs-results').tabs();
+	
+	
+	$(function() {
+		// recuperation des donnees
+		loadData('relations');
+		initTooltips();
+	});
+</script>

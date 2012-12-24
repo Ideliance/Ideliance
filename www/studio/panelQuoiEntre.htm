@@ -1,0 +1,75 @@
+<table width="100%" cellspacing="10">
+	<tr> 
+		<h1 align="center">Quoi-Entre</h1></tr>
+		<img src="images/help.png" align= "right" rel="tooltip" data-original-title="Recherchez les liaisons reliant deux sujets distincts. Vous pouvez sp&eacute;cifier un degr&eacute; maximal de liaison ainsi que les relations à exclure."  />
+	<tr>
+		<td valign="top" width="90%">
+			<form id="QEForm" action="#">
+				<table width="100%" cellpadding="4" cellspacing="3">
+					<tr>
+						<td align="left"> <label for="sujet1">Sujet 1</label></td>
+						<td align="left"> <label for="sujet2">Sujet 2</label></td>
+						<td align="left"> <label for="depthLimit">Profondeur limite</label></td>
+						<td align="left"> <label>En ne passant pas par</label></td>
+					</tr>
+					<tr>
+						<td>
+							<input type ="text" id="sujet1" placeholder="Sujet 1" size="50" value="" />
+						</td>
+						
+						<td>
+							<input type ="text" id="sujet2" placeholder="Sujet 2" size="50" value="" />
+						</td>
+						
+						<td>
+							<input type ="text" id="depthLimit" value= "2"/>
+						</td>
+						
+						<td>
+								
+							<div align="left" id="relationsToCross">
+							<!-- La liste des relations a ne pas traverser sera charge ici -->
+							</div>	
+							
+							<label for="selectAll"><input type="checkbox" id="selectAll" value=""> Tout s&eacute;lectionner </label>
+						</td>
+						
+						<td align="center" colspan="2">
+							<button type="submit" id="buttonSearch" class="btn btn-primary">
+								Trouver <img border="0" alt="Search" src="images/loupe.png" align="top" />
+							</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+
+			<div id="tabs-results" class="span12">
+				<div id="pathsFound">
+				</div>
+			</div>
+			
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+
+	$('#QEForm').submit(
+			function() {
+				beginQE();
+				return false;
+	});
+	
+	$('#tabs-results').tabs();
+	
+	$('#selectAll').click(function () {
+        $(':checkbox').attr('checked', this.checked);
+    });
+	
+	$(function() {
+		loadRelationsToCross();
+		autocomplete("sujet1", "sujet2", 'select name from v where name.toLowerCase()');
+		initTooltips();
+	});
+
+</script>
